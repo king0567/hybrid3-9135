@@ -30,7 +30,7 @@ class Students {
       );
     } else {
       print(
-          "That field doesn't exist in our data. Try sorting by ${fieldOptions.toString()} ");
+          "Students can't be sorted by \"$field\". Try sorting by ${fieldOptions.toString()} ");
     }
   }
 
@@ -49,7 +49,7 @@ class Students {
     if (hasValue) {
       people.removeWhere((item) => item.containsValue(field));
     } else {
-      print("That value doesn't exist in our data.");
+      print("\"$field\" doesn't match anything in our data.");
     }
   }
 }

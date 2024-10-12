@@ -29,6 +29,7 @@ void main() {
   for (var person in jsonDecoded) {
     Map<String, String> newPerson = {};
     person.forEach((key, value) {
+      print(value);
       newPerson[key] = value.toString();
     });
     data.add(newPerson);
@@ -37,7 +38,7 @@ void main() {
   var student = hybrid3.Students(data);
 
   student.output();
-  student.sort("person");
+  student.sort("first");
   print("");
   student.output();
   student.plus(
