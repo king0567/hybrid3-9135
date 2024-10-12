@@ -6,14 +6,32 @@ class Students {
   }
 
   void sort(String field) {
-    people.sort(
-      (a, b) {
-        var fieldA = a[field] ?? '';
-        var fieldB = b[field] ?? '';
+    bool hasField = people.any((person) => person.containsKey(field));
+    List fieldOptions = [];
 
-        return fieldA.compareTo(fieldB);
-      },
-    );
+    for (var person in people) {
+      person.forEach((key, value) {
+        if (fieldOptions.contains(key)) {
+          return;
+        } else {
+          fieldOptions.add(key);
+        }
+      });
+    }
+
+    if (hasField) {
+      people.sort(
+        (a, b) {
+          var fieldA = a[field] ?? '';
+          var fieldB = b[field] ?? '';
+
+          return fieldA.compareTo(fieldB);
+        },
+      );
+    } else {
+      print(
+          "That field doesn't exist in our data. Try sorting by ${fieldOptions.toString()} ");
+    }
   }
 
   void output() {
@@ -27,6 +45,11 @@ class Students {
   }
 
   void remove(String field) {
-    people.removeWhere((item) => item.containsValue(field));
+    bool hasValue = people.any((person) => person.containsValue(field));
+    if (hasValue) {
+      people.removeWhere((item) => item.containsValue(field));
+    } else {
+      print("That value doesn't exist in our data.");
+    }
   }
 }
